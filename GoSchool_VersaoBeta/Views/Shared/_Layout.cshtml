@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/simple-sidebar.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div id="nav" class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <div class="nav navbar-nav navbar-left">
+                    @* menu goscholl *@
+                    <div id="menu-toggle">
+                        <div id="menu" class="container" onclick="myFunction(this)">
+                            <div class="bar1"></div>
+                            <div class="bar2"></div>
+                            <div class="bar3"></div>
+                        </div>
+                    </div>
+                </div>
+                @Html.ActionLink("GoSchool", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper" >
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <img src="~/Content/imagens/48px.png" /></a>
+                </li>
+                <li>
+                    <a href=" #">Dashboard</a>
+                </li>
+
+
+
+                @*<li>
+                    <a id="testeButton" href="~/DadosParaGerarRelatorios/Index"><span class="fa fa-list" aria-hidden="true"></span> Dados para gerar o horário</a>
+                </li>*@
+
+
+                <li>
+                    <a id="testeButton" href="javascript: carregar();"><span class="fa fa-list" aria-hidden="true"></span> Dados para gerar o horário</a>
+                </li>
+
+                @*<li>
+                @Ajax.ActionLink("Dados para gerar Horario", "MenuDadosHorario", "DadosParaGerarRelatorios", new AjaxOptions {UpdateTargetId="MenuDadosHorarioAjax"});
+                </li>*@
+
+
+
+                <li>
+                    <a href="#"> <span class="fa fa-bar-chart" aria-hidden="true"></span> Relatórios</a>
+                </li>
+    
+                <li>
+                    <a  href="#"><span class="fa fa-clock-o fa-1x"  aria-hidden="true"></span> Horários</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-envelope-o" aria-hidden="true"></span> Contato</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-globe" aria-hidden="true"></span> Bitfour Techonolgy</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-power-off" aria-hidden="true"></span> Sair</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- /#sidebar-wrapper -->
+        <br/>
+        <div class="container body-content">
+
+            <div id="MenuDadosHorarioAjax">
+
+
+            </div>
+
+            @RenderBody()
+            <hr/>
+            <footer>
+                <div>
+                    <p align="center">&copy; @DateTime.Now.Year - Go-School - Gerador de horários escolares</p>
+                </div>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>
+
+
+<script src="~/Scripts/ScriptsSite.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+
+
+
+
+<script>
+    function carregar() {
+
+        $("#MenuDadosHorarioAjax").load("@Url.Action("MenuDadosHorario", "DadosParaGerarRelatorios")");
+    }
+</script>
